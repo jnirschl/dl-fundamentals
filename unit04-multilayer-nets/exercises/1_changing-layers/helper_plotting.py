@@ -82,8 +82,7 @@ def plot_accuracy(train_acc_list, valid_acc_list, results_dir=None):
 def show_examples(model, data_loader, unnormalizer=None, class_dict=None):
 
     fail_features, fail_targets, fail_predicted = [], [], []
-    for batch_idx, (features, targets) in enumerate(data_loader):
-
+    for features, targets in data_loader:
         with torch.no_grad():
             logits = model(features)
             predictions = torch.argmax(logits, dim=1)

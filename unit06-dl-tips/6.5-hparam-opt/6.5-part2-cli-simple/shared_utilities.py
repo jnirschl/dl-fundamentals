@@ -25,8 +25,7 @@ class PyTorchMLP(torch.nn.Module):
 
     def forward(self, x):
         x = torch.flatten(x, start_dim=1)
-        logits = self.all_layers(x)
-        return logits
+        return self.all_layers(x)
 
 
 class LightningModel(L.LightningModule):
@@ -76,8 +75,7 @@ class LightningModel(L.LightningModule):
         self.log("test_acc", self.test_acc)
 
     def configure_optimizers(self):
-        optimizer = torch.optim.SGD(self.parameters(), lr=self.learning_rate)
-        return optimizer
+        return torch.optim.SGD(self.parameters(), lr=self.learning_rate)
 
 
 class CustomDataset(Dataset):
@@ -146,26 +144,26 @@ class CustomDataModule(L.LightningDataModule):
         )
 
     def train_dataloader(self):
-        train_loader = DataLoader(
+        return DataLoader(
             dataset=self.train_dataset,
             batch_size=self.batch_size,
             shuffle=True,
             drop_last=True,
             num_workers=2,
         )
-        return train_loader
 
     def val_dataloader(self):
-        val_loader = DataLoader(
+        return DataLoader(
             dataset=self.val_dataset,
             batch_size=self.batch_size,
             shuffle=False,
             num_workers=2,
         )
-        return val_loader
 
     def test_dataloader(self):
-        test_loader = DataLoader(
-            dataset=self.test_dataset, batch_size=self.batch_size, shuffle=False, num_workers=2
+        return DataLoader(
+            dataset=self.test_dataset,
+            batch_size=self.batch_size,
+            shuffle=False,
+            num_workers=2,
         )
-        return test_loader

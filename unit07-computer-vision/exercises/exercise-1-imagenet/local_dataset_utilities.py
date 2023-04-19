@@ -29,13 +29,13 @@ def reporthook(count, block_size, total_size):
 
 
 def download_dataset():
-    source = "http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
     target = "aclImdb_v1.tar.gz"
 
     if os.path.exists(target):
         os.remove(target)
 
     if not os.path.isdir("aclImdb") and not os.path.isfile("aclImdb_v1.tar.gz"):
+        source = "http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
         urllib.request.urlretrieve(source, target, reporthook)
 
     if not os.path.isdir("aclImdb"):

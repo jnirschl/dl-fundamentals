@@ -52,8 +52,7 @@ class LightningModel(L.LightningModule):
         self.log("test_acc", self.test_acc)
 
     def configure_optimizers(self):
-        optimizer = torch.optim.SGD(self.parameters(), lr=self.learning_rate)
-        return optimizer
+        return torch.optim.SGD(self.parameters(), lr=self.learning_rate)
 
     
 def plot_csv_logger(

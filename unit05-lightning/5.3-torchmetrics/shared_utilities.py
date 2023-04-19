@@ -21,8 +21,7 @@ class PyTorchMLP(torch.nn.Module):
 
     def forward(self, x):
         x = torch.flatten(x, start_dim=1)
-        logits = self.all_layers(x)
-        return logits
+        return self.all_layers(x)
 
 
 def get_dataset_loaders():
@@ -69,8 +68,7 @@ def compute_accuracy(model, dataloader, device=None):
     correct = 0.0
     total_examples = 0
 
-    for idx, (features, labels) in enumerate(dataloader):
-
+    for features, labels in dataloader:
         features, labels = features.to(device), labels.to(device)
 
         with torch.no_grad():

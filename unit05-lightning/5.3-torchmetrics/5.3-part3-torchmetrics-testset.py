@@ -65,8 +65,7 @@ class LightningModel(L.LightningModule):
         self.log("accuracy", self.test_acc)
 
     def configure_optimizers(self):
-        optimizer = torch.optim.SGD(self.parameters(), lr=self.learning_rate)
-        return optimizer
+        return torch.optim.SGD(self.parameters(), lr=self.learning_rate)
 
 
 if __name__ == "__main__":
