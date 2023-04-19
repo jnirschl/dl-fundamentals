@@ -21,8 +21,7 @@ class PyTorchMLP(torch.nn.Module):
 
     def forward(self, x):
         x = torch.flatten(x, start_dim=1)
-        logits = self.all_layers(x)
-        return logits
+        return self.all_layers(x)
 
 
 def get_dataset_loaders():

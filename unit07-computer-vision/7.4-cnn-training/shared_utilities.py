@@ -56,8 +56,7 @@ class LightningModel(L.LightningModule):
         self.log("test_acc", self.test_acc)
 
     def configure_optimizers(self):
-        optimizer = torch.optim.SGD(self.parameters(), lr=self.learning_rate)
-        return optimizer
+        return torch.optim.SGD(self.parameters(), lr=self.learning_rate)
 
 
 class MnistDataModule(L.LightningDataModule):
@@ -91,34 +90,31 @@ class MnistDataModule(L.LightningDataModule):
         self.train, self.valid = random_split(train, lengths=[55000, 5000])
 
     def train_dataloader(self):
-        train_loader = DataLoader(
+        return DataLoader(
             dataset=self.train,
             batch_size=self.batch_size,
             drop_last=True,
             shuffle=True,
             num_workers=self.num_workers,
         )
-        return train_loader
 
     def val_dataloader(self):
-        valid_loader = DataLoader(
+        return DataLoader(
             dataset=self.valid,
             batch_size=self.batch_size,
             drop_last=False,
             shuffle=False,
             num_workers=self.num_workers,
         )
-        return valid_loader
 
     def test_dataloader(self):
-        test_loader = DataLoader(
+        return DataLoader(
             dataset=self.test,
             batch_size=self.batch_size,
             drop_last=False,
             shuffle=False,
             num_workers=self.num_workers,
         )
-        return test_loader
 
 
 class Cifar10DataModule(L.LightningDataModule):
@@ -167,34 +163,31 @@ class Cifar10DataModule(L.LightningDataModule):
         self.train, self.valid = random_split(train, lengths=[45000, 5000])
 
     def train_dataloader(self):
-        train_loader = DataLoader(
+        return DataLoader(
             dataset=self.train,
             batch_size=self.batch_size,
             drop_last=True,
             shuffle=True,
             num_workers=self.num_workers,
         )
-        return train_loader
 
     def val_dataloader(self):
-        valid_loader = DataLoader(
+        return DataLoader(
             dataset=self.valid,
             batch_size=self.batch_size,
             drop_last=False,
             shuffle=False,
             num_workers=self.num_workers,
         )
-        return valid_loader
 
     def test_dataloader(self):
-        test_loader = DataLoader(
+        return DataLoader(
             dataset=self.test,
             batch_size=self.batch_size,
             drop_last=False,
             shuffle=False,
             num_workers=self.num_workers,
         )
-        return test_loader
 
 
 def plot_loss_and_acc(

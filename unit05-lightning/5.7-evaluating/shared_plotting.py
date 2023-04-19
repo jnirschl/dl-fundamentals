@@ -17,8 +17,7 @@ def show_failures(
     failure_pred_labels = []
     failure_true_labels = []
 
-    for batch_idx, (features, targets) in enumerate(data_loader):
-
+    for features, targets in data_loader:
         with torch.inference_mode():
             features = features
             targets = targets

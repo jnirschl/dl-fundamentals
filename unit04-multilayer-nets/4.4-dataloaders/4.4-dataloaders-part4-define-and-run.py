@@ -109,8 +109,7 @@ if __name__ == "__main__":
     )
 
     num_epochs = 1
-    for epoch in range(num_epochs):
-
+    for _ in range(num_epochs):
         for batch_idx, (x, y) in enumerate(train_loader):
             if batch_idx >= 3:
                 break

@@ -24,8 +24,7 @@ class PyTorchMLP(torch.nn.Module):
 
     def forward(self, x):
         x = torch.flatten(x, start_dim=1)
-        logits = self.all_layers(x)
-        return logits
+        return self.all_layers(x)
 
 
 class LightningModel(L.LightningModule):
@@ -77,8 +76,7 @@ class LightningModel(L.LightningModule):
         self.log("test_acc", self.test_acc)
 
     def configure_optimizers(self):
-        optimizer = torch.optim.SGD(self.parameters(), lr=self.learning_rate)
-        return optimizer
+        return torch.optim.SGD(self.parameters(), lr=self.learning_rate)
 
 
 class MNISTDataModule(L.LightningDataModule):

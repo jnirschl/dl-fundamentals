@@ -16,8 +16,7 @@ def compute_total_loss(model, dataloader, device=None):
     loss = 0.0
     examples = 0.0
 
-    for idx, (features, labels) in enumerate(dataloader):
-
+    for features, labels in dataloader:
         features, labels = features.to(device), labels.to(device)
 
         with torch.no_grad():
